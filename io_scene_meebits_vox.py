@@ -23,7 +23,7 @@ import struct
 bl_info = {
     "name": "Meebit (.vox)",
     "author": "Dagfinn Parnas based on forked code from Richard Spencer, Gabriele Scibilia",
-    "version": (0, 5, 1),
+    "version": (0, 5, 2),
     "blender": (2, 80, 0),
     "location": "File > Import-Export",
     "description": "Import Meebit from .vox file",
@@ -147,6 +147,9 @@ def join_selected(context):
     print("\tSelected objects:", len(selected))
 
     bpy.ops.object.join()
+    bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='BOUNDS')
+    active.location.x=0
+    active.location.y=0
 
 
 def import_vox(path, *, voxel_spacing=0.025, voxel_size=0.025, load_frame=0,
